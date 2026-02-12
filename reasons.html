@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bakit Kita Love? ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffe6ec, #fff0f5);
+    overflow-x: hidden;
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+}
+
+h1 {
+    color: #ff4d6d;
+    margin-bottom: 40px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px #ff4d6d; }
+    to { text-shadow: 0 0 20px #ff85a2; }
+}
+
+/* Floating hearts background */
+.heart-bg span {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
+}
+
+.reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 25px;
+    max-width: 900px;
+    margin: auto;
+    perspective: 1000px;
+}
+
+.reason-card {
+    height: 160px;
+    border-radius: 20px;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.reason-card.revealed {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    padding: 15px;
+}
+
+.card-front {
+    background: white;
+    font-size: 40px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.card-back {
+    background: #ff4d6d;
+    color: white;
+    transform: rotateY(180deg);
+    text-align: center;
+    font-size: 14px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+button {
+    margin-top: 50px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    background: #95a0aa;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #7d8790;
+    transform: scale(1.05);
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 18px;
+    animation: pop 0.6s ease forwards;
+}
+
+@keyframes pop {
+    from { opacity: 1; transform: scale(0); }
+    to { opacity: 0; transform: scale(2); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="heart-bg" id="heartBg"></div>
+<h1>Tap each heart to see why... ❤️</h1>
+<div class="reasons-grid" id="reasonsGrid"></div>
+<button onclick="window.location.href='index.html'">Back to Gallery</button>
+
+<script>
+const loveReasons = [
+"Your Genuine Kindness",
+"Your Attitude",
+"Your unyielding support",
+"For making me laugh",
+"Because you're so understanding",
+"Because you're my best friend and my love",
+"Because you support my dreams",
+"Because you make me feel loved",
+"Because you're thoughtful and caring",
+"Because you're my favorite person",
+"Because you're loyal and trustworthy",
+"Because you're strong and brave",
+"Because you're my partner in everything",
+"Because you make me feel appreciated",
+"Because you celebrate my wins with me",
+"Because you're genuine and real",
+"Because you make every moment memorable",
+"Because you're my forever and always",
+"Because you're irreplaceable",
+"Because you're the LOML",
+"Because you're my biggest cheerleader",
+"Because I choose you every day",
+"Because you're simply YOU"
+];
+
+const icons = ["💖","🌸","🍬","🌟","🧸","🍕","✨","🎀","🍭","🌹"];
+const grid = document.getElementById('reasonsGrid');
+let revealedCount = 0;
+
+loveReasons.forEach((text, index) => {
+    const card = document.createElement('div');
+    card.className = 'reason-card';
+
+    const front = document.createElement('div');
+    front.className = 'card-face card-front';
+    front.innerText = icons[index % icons.length];
+
+    const back = document.createElement('div');
+    back.className = 'card-face card-back';
+    back.innerText = text;
+
+    card.appendChild(front);
+    card.appendChild(back);
+
+    card.addEventListener("click", () => {
+        card.classList.toggle("revealed");
+    });
+
+    grid.appendChild(card);
+});
+// Floating hearts generator
+const heartBg = document.getElementById('heartBg');
+setInterval(() => {
+    const heart = document.createElement('span');
+    heart.innerText = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+    heartBg.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+}, 500);
+
+// Sparkle effect
+function createSparkle(card) {
+    for(let i=0;i<6;i++){
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        sparkle.innerText = "✨";
+        sparkle.style.left = Math.random()*100 + "%";
+        sparkle.style.top = Math.random()*100 + "%";
+        card.appendChild(sparkle);
+        setTimeout(()=> sparkle.remove(),600);
+    }
+}
+
+// Confetti effect
+function launchConfetti() {
+    for(let i=0;i<60;i++){
+        const confetti = document.createElement("div");
+        confetti.innerText = "🎉";
+        confetti.style.position="fixed";
+        confetti.style.left=Math.random()*100+"vw";
+        confetti.style.top="-20px";
+        confetti.style.fontSize="20px";
+        confetti.style.animation="floatUp 3s linear forwards";
+        document.body.appendChild(confetti);
+        setTimeout(()=>confetti.remove(),3000);
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Question ❤️</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Floating hearts background -->
+    <div class="heart-bg" id="heartBg"></div>
+
+    <div class="notification-container" id="notifContainer"></div>
+
+    <!-- INITIAL QUESTION SCREEN -->
+    <div class="container" id="questionContainer">
+        <!-- Decorative corner hearts -->
+        <div class="corner-heart top-left">💕</div>
+        <div class="corner-heart top-right">💕</div>
+        <div class="corner-heart bottom-left">💕</div>
+        <div class="corner-heart bottom-right">💕</div>
+        
+        <div class="gif-wrapper">
+            <img id="statusGif" src="images/gif/11.gif" alt="Reaction GIF">
+        </div>
+        
+        <h1 id="question">LOVE MO BA AKO? ❤️</h1>
+        
+        <div class="buttons">
+            <button id="yesBtn" onclick="celebrate()">Yes 💖</button>
+            <button id="noBtn" onclick="moveButton()">No</button>
+            <div class="attempt-counter" id="attemptCounter" style="display: none;">0</div>
+        </div>
+    </div>
+
+    <!-- FLOATING PHOTOS SCREEN -->
+<div class="photo-gallery-container" id="photoGallery">
+    <div class="lyrics-overlay" id="lyricsDisplay">Hello Love ❤️</div>
+    <button id="reasonsBtn" class="reasons-link-btn" onclick="window.location.href='reasons.html'">
+        Bakit kita love? Click here! ✨
+    </button>
+</div>
+    <!-- Music Controls -->
+    <div class="music-controls" id="musicControls">
+        <button onclick="toggleMusic()" id="playPauseBtn">▶</button>
+        <div class="song-info">
+            <div class="song-title">This I Promise You</div>
+            <div class="song-artist">*NSYNC</div>
+        </div>
+        <button onclick="restartMusic()">↻</button>
+    </div>
+
+    <!-- Hidden audio element -->
+    <audio id="backgroundMusic" loop>
+        <source src="music/this-i-promise-you.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
