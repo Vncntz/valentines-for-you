@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Gift! 🎁</title>
+    <link rel="stylesheet" href="gift-countdown-style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="title">A Special Gift Awaits You! 🎁</h1>
+    
+    <div class="countdown-section" id="countdownSection">
+        <p class="countdown-label">Gift unlocks in:</p>
+        <div class="countdown" id="countdown">
+            <div class="time-box">
+                <span class="time-value" id="hours">00</span>
+                <span class="time-label">Hours</span>
+            </div>
+            <div class="time-box">
+                <span class="time-value" id="minutes">00</span>
+                <span class="time-label">Minutes</span>
+            </div>
+            <div class="time-box">
+                <span class="time-value" id="seconds">00</span>
+                <span class="time-label">Seconds</span>
+            </div>
+        </div>
+        <div class="hint-text">
+            <p>✨ Choose wisely when the time comes... or does it matter? 😏 ✨</p>
+        </div>
+    </div>
+
+    <div class="gift-selection-section" id="giftSection" style="display: none;">
+        <p class="selection-instruction">🎉 Time's up! Choose ONE gift box to reveal your surprise! 🎉</p>
+        <div class="gift-boxes">
+            <div class="gift-box" data-gift="1">
+                <div class="gift-icon">🎁</div>
+                <p class="gift-label">Gift #1</p>
+                <div class="gift-shine"></div>
+            </div>
+            <div class="gift-box" data-gift="2">
+                <div class="gift-icon">🎁</div>
+                <p class="gift-label">Gift #2</p>
+                <div class="gift-shine"></div>
+            </div>
+            <div class="gift-box" data-gift="3">
+                <div class="gift-icon">🎁</div>
+                <p class="gift-label">Gift #3</p>
+                <div class="gift-shine"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="voucher-section" id="voucherSection" style="display: none;">
+    <div class="voucher-card" id="voucherCard">
+        <div class="voucher-header">
+            <h2>🎉 Congratulations! 🎉</h2>
+            <div class="confetti-container"></div>
+        </div>
+        <div class="voucher-body">
+            <div class="voucher-stamp">
+                <div class="stamp-circle">
+                    <span class="stamp-text">VALID</span>
+                    <span class="stamp-icon">💕</span>
+                </div>
+            </div>
+            <h3 class="voucher-title">✨ Date Voucher ✨</h3>
+            <div class="voucher-content">
+                <p class="voucher-main-text">
+                    You've earned a <strong>Special Date Voucher</strong> for ONE amazing day with me! 💖
+                </p>
+                <div class="voucher-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📅</span>
+                        <span class="detail-text"><strong>Valid:</strong> Within This Year</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">⏰</span>
+                        <span class="detail-text"><strong>Redeem:</strong> Saturday or Sunday or Holiday</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">💑</span>
+                        <span class="detail-text"><strong>Duration:</strong> Full Day Together</span>
+                    </div>
+                </div>
+                <div class="voucher-code">
+                    <p class="code-label">Voucher Code:</p>
+                    <p class="code-value">LOVE2026</p>
+                </div>
+                <div class="voucher-instructions">
+                    <p class="instruction-text">
+                        📸 <strong>To Claim:</strong> Screenshot this voucher and send it to me! 
+                    </p>
+                    <p class="instruction-subtext">
+                        Let me know which day works best for you! 💕
+                    </p>
+                </div>
+            </div>
+            <div class="voucher-footer">
+                <p class="footer-note">Non-transferable • One-time use • Made with love ❤️</p>
+                <p class="footer-date">Issued: February 13, 2026</p>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="continue-btn" id="continueBtn">Continue to Your Next Surprise 💌</button>
+        </div>
+    </div>
+</div>
+
+<script src="gift-countdown-script.js"></script>
+</body>
+</html>

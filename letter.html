@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Valentine's Letter 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            padding: 20px;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Music Control Button */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+
+        .music-control.playing {
+            animation: musicPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% {
+                box-shadow: 0 5px 20px rgba(255, 77, 109, 0.3);
+            }
+            50% {
+                box-shadow: 0 5px 30px rgba(255, 77, 109, 0.6);
+            }
+        }
+
+        .letter-container {
+            background: #fff9f0;
+            padding: 60px 50px;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 700px;
+            width: 100%;
+            border: 2px solid #f0e6d2;
+            position: relative;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #f0e6d2;
+            padding-bottom: 20px;
+        }
+
+        .letter-header h1 {
+            font-size: 2.5rem;
+            color: #c06c84;
+            margin-bottom: 10px;
+        }
+
+        .letter-date {
+            font-size: 1rem;
+            color: #999;
+            font-style: italic;
+        }
+
+        .letter-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #333;
+            text-align: left;
+        }
+
+        .letter-content p {
+            margin-bottom: 20px;
+        }
+
+        .signature {
+            text-align: right;
+            font-style: italic;
+            margin-top: 40px;
+            font-size: 1.3rem;
+            color: #c06c84;
+        }
+
+        .hearts {
+            text-align: center;
+            font-size: 2rem;
+            margin-top: 30px;
+        }
+
+        .music-note {
+            position: fixed;
+            font-size: 20px;
+            pointer-events: none;
+            animation: floatNote 4s ease-out forwards;
+            z-index: 1;
+        }
+
+        @keyframes floatNote {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .letter-container {
+                padding: 40px 30px;
+            }
+
+            .letter-header h1 {
+                font-size: 2rem;
+            }
+
+            .letter-content {
+                font-size: 1.1rem;
+            }
+
+            .music-control {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                top: 15px;
+                right: 15px;
+            }
+        }
+
+        /* Floating Pictures */
+        .floating-picture {
+            position: fixed;
+            width: 120px;
+            height: 120px;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.9);
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+            animation: floatPicture 20s ease-in-out infinite;
+        }
+
+        @keyframes floatPicture {
+            0% {
+                opacity: 0;
+                transform: translateY(0) rotate(0deg);
+            }
+            10% {
+                opacity: 0.9;
+            }
+            90% {
+                opacity: 0.9;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-30px) rotate(5deg);
+            }
+        }
+
+        /* Position pictures on the sides to avoid overlap */
+        .floating-picture.left {
+            left: 50px;
+        }
+
+        .floating-picture.right {
+            right: 50px;
+        }
+
+        .floating-picture.top {
+            top: 80px;
+        }
+
+        .floating-picture.bottom {
+            bottom: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .floating-picture {
+                width: 80px;
+                height: 80px;
+                border-width: 3px;
+            }
+
+            .floating-picture.left {
+                left: 20px;
+            }
+
+            .floating-picture.right {
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .letter-container {
+                padding: 30px 20px;
+            }
+
+            .letter-header h1 {
+                font-size: 1.6rem;
+            }
+
+            .letter-content {
+                font-size: 1rem;
+            }
+
+            .signature {
+                font-size: 1.1rem;
+            }
+
+            .music-control {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+
+            .floating-picture {
+                width: 60px;
+                height: 60px;
+                border-width: 2px;
+            }
+
+            .floating-picture.left {
+                left: 10px;
+            }
+
+            .floating-picture.right {
+                right: 10px;
+            }
+
+            .floating-picture.top {
+                top: 60px;
+            }
+
+            .floating-picture.bottom {
+                bottom: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Music Control Button -->
+<button class="music-control playing" id="musicControl" title="Toggle music">
+    🎵
+</button>
+
+<!-- Audio Element - Add your music file here -->
+<audio id="backgroundMusic" loop>
+    <!-- Replace with your music file path -->
+    <source src="music/music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<div class="letter-container">
+    <div class="letter-header">
+        <h1>To My Valentine 💕</h1>
+        <p class="letter-date">February 14, 2026</p>
+    </div>
+
+    <div class="letter-content">
+        <p>Hello Love, Happy Valentine’s Day. 💖</p>
+
+        <p>Sana na-surprise kita dito hehe. Basahin mo ’to...</p>
+
+        <p>First of all, gusto ko mag-thank you sa love at tiwala na binibigay mo sa akin. Thank you for making me happy and making me feel special through the years we’ve been together. I hope it lasts until the very end.</p>
+
+        <p>Thank you sa full support na ginagawa mo para sa akin at sa pasensya na binibigay mo. Thank you sa time and effort na binigay mo sa relationship natin. Thank you sa mga sacrifices na ginawa mo para sa akin.</p>
+
+        <p>Love na love kita. Huwag ka mag-alala, beb, hindi kita pababayaan. Kasama kita nung time na nangangarap pa lang ako, at sisiguraduhin ko na ikaw pa rin ang kasama ko hanggang maabot ko lahat ng ’yon — at kasama ka sa bawat achivements. Andito lang ako beb naka support sayo gaya ng walang sawang pag support mo sakin.</p>
+
+        <p>I love you, beb. Happy Valentine’s Day. 🌹✨</p>
+
+        <div class="signature">
+            Forever yours,<br>
+            Your Valentine 💕
+        </div>
+
+        <div class="hearts">
+            ❤️ 💕 💖 💗 💓
+        </div>
+    </div>
+</div>
+
+<script>
+    const music = document.getElementById('backgroundMusic');
+    const musicControl = document.getElementById('musicControl');
+    let isPlaying = false;
+
+    // Try to autoplay music when page loads
+    window.addEventListener('load', () => {
+        // Attempt to play (some browsers block autoplay)
+        music.play().then(() => {
+            isPlaying = true;
+            musicControl.classList.add('playing');
+            startMusicNotes();
+        }).catch(() => {
+            // Autoplay was blocked, user needs to click
+            isPlaying = false;
+            musicControl.classList.remove('playing');
+            musicControl.textContent = '🔇';
+        });
+    });
+
+    // Toggle music on button click
+    musicControl.addEventListener('click', () => {
+        if (isPlaying) {
+            music.pause();
+            musicControl.textContent = '🔇';
+            musicControl.classList.remove('playing');
+            isPlaying = false;
+        } else {
+            music.play();
+            musicControl.textContent = '🎵';
+            musicControl.classList.add('playing');
+            isPlaying = true;
+            startMusicNotes();
+        }
+    });
+
+    // Create floating music notes
+    function createMusicNote() {
+        if (!isPlaying) return;
+        
+        const note = document.createElement('div');
+        note.classList.add('music-note');
+        const notes = ['I love you', '🎵', '🎶', '🎼', '🎤'];
+        note.textContent = notes[Math.floor(Math.random() * notes.length)];
+        note.style.left = Math.random() * 100 + 'vw';
+        note.style.top = '100vh';
+        
+        document.body.appendChild(note);
+        
+        setTimeout(() => note.remove(), 4000);
+    }
+
+    // Start generating music notes
+    let noteInterval;
+    function startMusicNotes() {
+        if (noteInterval) clearInterval(noteInterval);
+        noteInterval = setInterval(createMusicNote, 2000);
+    }
+
+    // Stop music notes when music stops
+    music.addEventListener('pause', () => {
+        if (noteInterval) clearInterval(noteInterval);
+    });
+
+    // Set volume (0.0 to 1.0)
+    music.volume = 0.5;
+
+    // Create floating pictures
+    function createFloatingPictures() {
+        const totalPictures = 30; // photo1.jpg to photo30.jpg
+        const pictureCount = 8; // Number of pictures to show at once
+        
+        // Define positions that won't overlap with the letter (corners and edges)
+        const positions = [
+            { position: 'left top', class: 'left top' },
+            { position: 'left bottom', class: 'left bottom' },
+            { position: 'right top', class: 'right top' },
+            { position: 'right bottom', class: 'right bottom' },
+        ];
+
+        // Create pictures at different intervals
+        for (let i = 0; i < pictureCount; i++) {
+            setTimeout(() => {
+                const pictureNum = Math.floor(Math.random() * totalPictures) + 1;
+                const picture = document.createElement('img');
+                picture.src = `pictures/photo${pictureNum}.jpg`;
+                picture.classList.add('floating-picture');
+                
+                // Select a random position from corners/edges
+                const pos = positions[i % positions.length];
+                const posClasses = pos.class.split(' ');
+                posClasses.forEach(cls => picture.classList.add(cls));
+                
+                // Add random vertical offset for variety
+                const offset = Math.random() * 200;
+                if (posClasses.includes('top')) {
+                    picture.style.top = (80 + offset) + 'px';
+                } else if (posClasses.includes('bottom')) {
+                    picture.style.bottom = (80 + offset) + 'px';
+                }
+                
+                // Random animation duration for variety
+                picture.style.animationDuration = (15 + Math.random() * 10) + 's';
+                picture.style.animationDelay = (Math.random() * 5) + 's';
+                
+                // Error handling for missing images
+                picture.onerror = function() {
+                    picture.remove();
+                };
+                
+                document.body.appendChild(picture);
+                
+                // Replace with new picture after animation completes
+                setTimeout(() => {
+                    picture.remove();
+                    // Create new picture
+                    if (isPlaying || true) { // Always show pictures
+                        createSingleFloatingPicture(positions);
+                    }
+                }, 20000);
+            }, i * 2500); // Stagger initial appearance
+        }
+    }
+
+    function createSingleFloatingPicture(positions) {
+        const totalPictures = 30;
+        const pictureNum = Math.floor(Math.random() * totalPictures) + 1;
+        const picture = document.createElement('img');
+        picture.src = `pictures/photo${pictureNum}.jpg`;
+        picture.classList.add('floating-picture');
+        
+        const pos = positions[Math.floor(Math.random() * positions.length)];
+        const posClasses = pos.class.split(' ');
+        posClasses.forEach(cls => picture.classList.add(cls));
+        
+        const offset = Math.random() * 200;
+        if (posClasses.includes('top')) {
+            picture.style.top = (80 + offset) + 'px';
+        } else if (posClasses.includes('bottom')) {
+            picture.style.bottom = (80 + offset) + 'px';
+        }
+        
+        picture.style.animationDuration = (15 + Math.random() * 10) + 's';
+        picture.style.animationDelay = (Math.random() * 3) + 's';
+        
+        picture.onerror = function() {
+            picture.remove();
+        };
+        
+        document.body.appendChild(picture);
+        
+        setTimeout(() => {
+            picture.remove();
+            createSingleFloatingPicture(positions);
+        }, 20000);
+    }
+
+    // Start creating floating pictures when page loads
+    window.addEventListener('load', () => {
+        createFloatingPictures();
+    });
+</script>
+
+</body>
+</html>
