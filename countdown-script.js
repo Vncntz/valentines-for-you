@@ -1,5 +1,5 @@
 // Target date: February 14, 2026 at 8:00 PM
-const targetDate = new Date('2026-02-14T20:00:00').getTime();
+const targetDate = new Date('2026-02-14T08:00:00').getTime();
 
 // Get elements
 const daysEl = document.getElementById('days');
